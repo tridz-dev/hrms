@@ -49,14 +49,15 @@
 									class="flex flex-row cursor-pointer flex-start p-4 items-center justify-between border-b"
 									v-for="link in profileLinks"
 									:key="link.title"
-									@click="openInfoModal(link)"
+									@click="handleLinkClick(link)"
+									:class="link.isAction && link.action === 'resignation' ? 'text-red-600 hover:bg-red-50' : ''"
 								>
 									<div class="flex flex-row items-center gap-3 grow">
 										<FeatherIcon
 											:name="link.icon"
-											class="h-5 w-5 text-gray-500"
+											:class="link.isAction && link.action === 'resignation' ? 'h-5 w-5 text-red-500' : 'h-5 w-5 text-gray-500'"
 										/>
-										<div class="text-base font-normal text-gray-800">
+										<div class="text-base font-normal" :class="link.isAction && link.action === 'resignation' ? 'text-red-600' : 'text-gray-800'">
 											{{ link.title }}
 										</div>
 									</div>
@@ -211,6 +212,12 @@ const profileLinks = [
 			"iban",
 		],
 	},
+	{
+		icon: "file-text",
+		title: __("Resignation Application"),
+		isAction: true,
+		action: "resignation",
+	},
 ]
 
 const isInfoModalOpen = ref(false)
@@ -221,6 +228,14 @@ const allowPushNotifications = computed(
 		window.frappe?.boot.push_relay_server_url &&
 		arePushNotificationsEnabled.data
 )
+
+const handleLinkClick = async (link) => {
+	if (link.isAction && link.action === 'resignation') {
+		router.push({ name: 'ResignationDashboard' })
+	} else {
+		openInfoModal(link)
+	}
+}
 
 const openInfoModal = async (request) => {
 	selectedItem.value = request

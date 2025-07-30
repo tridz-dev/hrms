@@ -52,6 +52,7 @@ import {
 	ATTENDANCE_REQUEST_FIELDS,
 	SHIFT_REQUEST_FIELDS,
 	SHIFT_FIELDS,
+	RESIGNATION_FIELDS,
 } from "@/data/config/requestSummaryFields"
 
 const __ = inject("$translate")
@@ -86,6 +87,7 @@ const fieldsMap = {
 	"Attendance Request": ATTENDANCE_REQUEST_FIELDS,
 	"Shift Request": SHIFT_REQUEST_FIELDS,
 	"Shift Assignment": SHIFT_FIELDS,
+	"Employee Resignation": RESIGNATION_FIELDS,
 }
 
 const isRequestModalOpen = ref(false)

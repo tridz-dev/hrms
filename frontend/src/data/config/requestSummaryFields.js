@@ -254,3 +254,41 @@ export const EMPLOYEE_CHECKIN_FIELDS = [
 		fieldtype: "geolocation",
 	},
 ]
+
+export const RESIGNATION_FIELDS = [
+	{
+		fieldname: "name",
+		label: "ID",
+		fieldtype: "Data",
+	},
+	{
+		fieldname: "employee",
+		label: "Employee",
+		fieldtype: "Link",
+	},
+	{
+		fieldname: "employee_name",
+		label: "Employee Name",
+		fieldtype: "Data",
+	},
+	{
+		fieldname: "resignation_submission_date",
+		label: "Resignation Submission Date",
+		fieldtype: "Date",
+	},
+	{
+		fieldname: "last_working_date",
+		label: "Last Working Date",
+		fieldtype: "Date",
+	},
+	{
+		fieldname: "reason_for_resignation",
+		label: "Reason for Resignation",
+		fieldtype: "Small Text",
+	},
+	{
+		fieldname: "docstatus",
+		label: "Status",
+		fieldtype: "Select",
+	},
+]

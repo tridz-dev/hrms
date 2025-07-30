@@ -68,6 +68,34 @@ const routes = [
 		component: () => import("@/views/AppSettings.vue"),
 	},
 	{
+		path: "/resignation-dashboard",
+		name: "ResignationDashboard",
+		component: () => import("@/views/ResignationDashboard.vue"),
+	},
+	{
+		path: "/resignation-list",
+		name: "ResignationApplicationListView",
+		component: () => import("@/views/ResignationApplicationList.vue"),
+	},
+	{
+		path: "/resignation-form/:id?",
+		name: "ResignationApplicationFormView",
+		component: () => import("@/views/ResignationApplication.vue"),
+		props: true,
+	},
+	{
+		path: "/employee-resignation/:id?",
+		name: "EmployeeResignationDetailView",
+		component: () => import("@/views/ResignationApplication.vue"),
+		props: true,
+	},
+	{
+		path: "/employee-resignation-form/:id?",
+		name: "EmployeeResignationFormView",
+		component: () => import("@/views/ResignationApplication.vue"),
+		props: true,
+	},
+	{
 		path: "/invalid-employee",
 		name: "InvalidEmployee",
 		component: () => import("@/views/InvalidEmployee.vue"),

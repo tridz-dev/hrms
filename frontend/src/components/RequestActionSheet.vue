@@ -113,6 +113,7 @@
 			v-else-if="
 				document?.doc?.docstatus === 0 &&
 				(document?.doc?.doctype === 'Attendance Request' ||
+					document?.doc?.doctype === 'Employee Resignation' ||
 					['Approved', 'Rejected'].includes(document?.doc?.[approvalField])) &&
 				hasPermission('submit')
 			"

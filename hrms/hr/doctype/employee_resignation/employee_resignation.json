@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-28 11:34:57.087763",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_yfnn",
+  "employee",
+  "resignation_submission_date",
+  "last_working_date",
+  "reason_for_resignation",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_yfnn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "default": "Today",
+   "fieldname": "resignation_submission_date",
+   "fieldtype": "Date",
+   "label": "Resignation Submission Date",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "last_working_date",
+   "fieldtype": "Date",
+   "label": "Last Working Date",
+   "read_only_depends_on": "eval:doc.docstatus === '1' && doc.workflow_state === \"Pending LM Approval\""
+  },
+  {
+   "fieldname": "reason_for_resignation",
+   "fieldtype": "Text",
+   "label": "Reason for Resignation"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Employee Resignation",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-07-30 17:29:11.671122",
+ "modified_by": "jezlan@tridz.com",
+ "module": "HR",
+ "name": "Employee Resignation",
+ "owner": "jezlan@tridz.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
