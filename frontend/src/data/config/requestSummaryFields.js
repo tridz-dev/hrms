@@ -292,3 +292,36 @@ export const RESIGNATION_FIELDS = [
 		fieldtype: "Select",
 	},
 ]
+
+export const ASSET_REQUEST_FIELDS = [
+	{
+		fieldname: "name",
+		label: "ID",
+		fieldtype: "Data",
+	},
+	{
+		fieldname: "employee",
+		label: "Employee",
+		fieldtype: "Link",
+	},
+	{
+		fieldname: "request_date",
+		label: "Request Date",
+		fieldtype: "Date",
+	},
+	{
+		fieldname: "requested_item_name",
+		label: "Requested Item Name",
+		fieldtype: "Data",
+	},
+	{
+		fieldname: "reason_for_request",
+		label: "Reason for Request",
+		fieldtype: "Text",
+	},
+	{
+		fieldname: "docstatus",
+		label: "Status",
+		fieldtype: "Select",
+	},
+]

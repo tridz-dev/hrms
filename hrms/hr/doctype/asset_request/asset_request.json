@@ -1,0 +1,102 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-01 16:09:32.865575",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_g28y",
+  "employee",
+  "request_date",
+  "requested_item_name",
+  "asset_item",
+  "no_match_found",
+  "reason_for_request",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_g28y",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "default": "Today",
+   "fieldname": "request_date",
+   "fieldtype": "Date",
+   "label": "Request Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "requested_item_name",
+   "fieldtype": "Data",
+   "label": "Requested Item Name"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "asset_item",
+   "fieldtype": "Link",
+   "label": "Asset Item",
+   "options": "Asset",
+   "read_only": 1,
+   "read_only_depends_on": "eval:doc.docstatus == '1' && doc.workflow_state != \"Pending HR Approval\""
+  },
+  {
+   "fieldname": "reason_for_request",
+   "fieldtype": "Text",
+   "label": "Reason for request"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Request",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "no_match_found",
+   "fieldtype": "Check",
+   "label": "No Match Found",
+   "permlevel": 1,
+   "read_only_depends_on": "eval:doc.docstatus == '1' && doc.workflow_state != \"Pending HR Approval\" && !doc.asset_item"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-08-05 17:17:00.364875",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "Asset Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

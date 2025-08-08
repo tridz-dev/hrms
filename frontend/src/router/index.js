@@ -96,6 +96,28 @@ const routes = [
 		props: true,
 	},
 	{
+		path: "/asset-request-dashboard",
+		name: "AssetRequestDashboard",
+		component: () => import("@/views/AssetRequestDashboard.vue"),
+	},
+	{
+		path: "/asset-request-list",
+		name: "AssetRequestListView",
+		component: () => import("@/views/AssetRequestApplicationList.vue"),
+	},
+	{
+		path: "/asset-request-form/:id?",
+		name: "AssetRequestFormView",
+		component: () => import("@/views/AssetRequestApplication.vue"),
+		props: true,
+	},
+	{
+		path: "/asset-request/:id?",
+		name: "AssetRequestDetailView",
+		component: () => import("@/views/AssetRequestApplication.vue"),
+		props: true,
+	},
+	{
 		path: "/invalid-employee",
 		name: "InvalidEmployee",
 		component: () => import("@/views/InvalidEmployee.vue"),

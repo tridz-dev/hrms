@@ -218,6 +218,12 @@ const profileLinks = [
 		isAction: true,
 		action: "resignation",
 	},
+	{
+		icon: "package",
+		title: __("Asset Request"),
+		isAction: true,
+		action: "asset_request",
+	},
 ]
 
 const isInfoModalOpen = ref(false)
@@ -232,6 +238,8 @@ const allowPushNotifications = computed(
 const handleLinkClick = async (link) => {
 	if (link.isAction && link.action === 'resignation') {
 		router.push({ name: 'ResignationDashboard' })
+	} else if (link.isAction && link.action === 'asset_request') {
+		router.push({ name: 'AssetRequestDashboard' })
 	} else {
 		openInfoModal(link)
 	}

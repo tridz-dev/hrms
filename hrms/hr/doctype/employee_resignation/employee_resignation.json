@@ -35,7 +35,7 @@
    "fieldname": "last_working_date",
    "fieldtype": "Date",
    "label": "Last Working Date",
-   "read_only_depends_on": "eval:doc.docstatus === '1' && doc.workflow_state === \"Pending LM Approval\""
+   "read_only_depends_on": "eval:doc.docstatus == '1' && doc.workflow_state != \"Pending LM Approval\""
   },
   {
    "fieldname": "reason_for_resignation",
@@ -57,8 +57,8 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-30 17:29:11.671122",
- "modified_by": "jezlan@tridz.com",
+ "modified": "2025-08-05 01:12:16.765670",
+ "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Resignation",
  "owner": "jezlan@tridz.com",
