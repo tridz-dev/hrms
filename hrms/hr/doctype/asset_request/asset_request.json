@@ -10,6 +10,7 @@
   "request_date",
   "requested_item_name",
   "asset_item",
+  "item_purchased",
   "no_match_found",
   "reason_for_request",
   "amended_from"
@@ -69,13 +70,21 @@
    "label": "No Match Found",
    "permlevel": 1,
    "read_only_depends_on": "eval:doc.docstatus == '1' && doc.workflow_state != \"Pending HR Approval\" && !doc.asset_item"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "depends_on": "eval:doc.docstatus == '1' && doc.workflow_state == \"Pending Procurement Action\"",
+   "fieldname": "item_purchased",
+   "fieldtype": "Check",
+   "label": "Item Purchased"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-05 17:17:00.364875",
+ "modified": "2025-08-11 02:15:16.352232",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Asset Request",
