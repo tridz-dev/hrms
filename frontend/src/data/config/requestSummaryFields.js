@@ -325,3 +325,33 @@ export const ASSET_REQUEST_FIELDS = [
 		fieldtype: "Select",
 	},
 ]
+
+// README: Update RequestList.vue mapping when introducing new field sets
+
+export const LEAVE_RESUMPTION_FIELDS = [
+    {
+        fieldname: "name",
+        label: "ID",
+        fieldtype: "Data",
+    },
+    {
+        fieldname: "employee",
+        label: "Employee",
+        fieldtype: "Link",
+    },
+    {
+        fieldname: "join_date",
+        label: "Join Date",
+        fieldtype: "Date",
+    },
+    {
+        fieldname: "comment",
+        label: "Comment",
+        fieldtype: "Small Text",
+    },
+    {
+        fieldname: "docstatus",
+        label: "Status",
+        fieldtype: "Select",
+    },
+]

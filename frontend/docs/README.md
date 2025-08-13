@@ -16,6 +16,11 @@ This folder contains documentation for features and changes made to the HRMS fro
 - Backend API integration and frontend components
 - **2025-01-XX:** New feature allowing employees to request assets through the HRMS interface. Includes dashboard, form views, and list management.
 
+### [Leave Resumption Feature](./leave-resumption-feature.md)
+- Implementation details for the leave resumption feature
+- Dashboard, list and form views
+- Backend API integration and frontend components
+
 ## Documentation Standards
 
 When adding new features or making significant changes to the HRMS frontend, please:

@@ -54,6 +54,7 @@ import {
 	SHIFT_FIELDS,
 	RESIGNATION_FIELDS,
 	ASSET_REQUEST_FIELDS,
+    LEAVE_RESUMPTION_FIELDS,
 } from "@/data/config/requestSummaryFields"
 
 const __ = inject("$translate")
@@ -90,6 +91,7 @@ const fieldsMap = {
 	"Shift Assignment": SHIFT_FIELDS,
 	"Employee Resignation": RESIGNATION_FIELDS,
 	"Asset Request": ASSET_REQUEST_FIELDS,
+    "Leave Resumption": LEAVE_RESUMPTION_FIELDS,
 }
 
 const isRequestModalOpen = ref(false)

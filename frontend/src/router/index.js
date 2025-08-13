@@ -100,17 +100,39 @@ const routes = [
 		name: "AssetRequestDashboard",
 		component: () => import("@/views/AssetRequestDashboard.vue"),
 	},
+  {
+    path: "/leave-resumption-dashboard",
+    name: "LeaveResumptionDashboard",
+    component: () => import("@/views/LeaveResumptionDashboard.vue"),
+  },
 	{
 		path: "/asset-request-list",
 		name: "AssetRequestListView",
 		component: () => import("@/views/AssetRequestApplicationList.vue"),
 	},
+  {
+    path: "/leave-resumption-list",
+    name: "LeaveResumptionListView",
+    component: () => import("@/views/LeaveResumptionApplicationList.vue"),
+  },
 	{
 		path: "/asset-request-form/:id?",
 		name: "AssetRequestFormView",
 		component: () => import("@/views/AssetRequestApplication.vue"),
 		props: true,
 	},
+  {
+    path: "/leave-resumption-form/:id?",
+    name: "LeaveResumptionFormView",
+    component: () => import("@/views/LeaveResumptionApplication.vue"),
+    props: true,
+  },
+  {
+    path: "/leave-resumption/:id?",
+    name: "LeaveResumptionDetailView",
+    component: () => import("@/views/LeaveResumptionApplication.vue"),
+    props: true,
+  },
 	{
 		path: "/asset-request/:id?",
 		name: "AssetRequestDetailView",

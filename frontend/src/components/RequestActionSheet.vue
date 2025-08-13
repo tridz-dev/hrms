@@ -114,6 +114,7 @@
 				document?.doc?.docstatus === 0 &&
 				(document?.doc?.doctype === 'Attendance Request' ||
 					document?.doc?.doctype === 'Employee Resignation' ||
+					document?.doc?.doctype === 'Leave Resumption' ||
 					['Approved', 'Rejected'].includes(document?.doc?.[approvalField])) &&
 				hasPermission('submit')
 			"
@@ -329,10 +330,16 @@ const updateDocumentStatus = ({ status = "", docstatus = 0 }) => {
 
 const openFormView = () => {
 	modalController.dismiss()
-	router.push({
-		name: `${props.modelValue.doctype.replace(/\s+/g, "")}DetailView`,
-		params: { id: props.modelValue.name },
-	})
+    const doctype = (props.modelValue.doctype || "").trim()
+    const id = props.modelValue.name
+    if (doctype === "Leave Resumption") {
+        router.push({ name: "LeaveResumptionFormView", params: { id } })
+        return
+    }
+    router.push({
+        name: `${doctype.replace(/\s+/g, "")}DetailView`,
+        params: { id },
+    })
 }
 
 onMounted(() => {

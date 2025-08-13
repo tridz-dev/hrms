@@ -213,16 +213,22 @@ const profileLinks = [
 		],
 	},
 	{
-		icon: "file-text",
-		title: __("Resignation Application"),
-		isAction: true,
-		action: "resignation",
-	},
-	{
 		icon: "package",
 		title: __("Asset Request"),
 		isAction: true,
 		action: "asset_request",
+	},
+  {
+        icon: "corner-up-right",
+        title: __("Leave Resumption"),
+        isAction: true,
+        action: "leave_resumption",
+    },
+	{
+		icon: "file-text",
+		title: __("Resignation Application"),
+		isAction: true,
+		action: "resignation",
 	},
 ]
 
@@ -240,6 +246,8 @@ const handleLinkClick = async (link) => {
 		router.push({ name: 'ResignationDashboard' })
 	} else if (link.isAction && link.action === 'asset_request') {
 		router.push({ name: 'AssetRequestDashboard' })
+  } else if (link.isAction && link.action === 'leave_resumption') {
+    router.push({ name: 'LeaveResumptionDashboard' })
 	} else {
 		openInfoModal(link)
 	}
