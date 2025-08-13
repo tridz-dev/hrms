@@ -63,10 +63,9 @@ class EmployeeResignation(Document):
 
 	def process_resignation(self):
 		try:
-			# Update employee status to resigned
 			employee = frappe.get_doc("Employee", self.employee)
-			employee.status = "Resigned"
-			employee.relieving_date = self.last_working_day
+			employee.resignation_letter_date = self.resignation_submission_date	
+			employee.reason_for_leaving = self.reason_for_resignation
 			employee.save()
 			
 			frappe.log_error(f"Successfully processed resignation for Employee {self.employee}")
