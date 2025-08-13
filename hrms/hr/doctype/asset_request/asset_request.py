@@ -4,6 +4,11 @@
 import frappe
 from frappe.utils import get_fullname, get_url
 from frappe.model.document import Document
+from hrms.hr.utils import (
+	notify_line_manager, 
+	create_system_notification, 
+	get_asset_request_notification_data
+)
 
 
 class AssetRequest(Document):
@@ -31,49 +36,23 @@ class AssetRequest(Document):
 			self.create_asset_movement()
 
 	def notify_line_manager(self):
-		frappe.log_error(f"Asset Request {self.name} has no Line Manager for employee {self.employee}")
-		if not self.employee:
-			return
-			
-		try:
-			employee = frappe.get_doc("Employee", self.employee)
-			
-			if not employee.reports_to:
-				frappe.log_error(f"Asset Request {self.name} has no Line Manager for employee {self.employee}")
-				return
-				
-			lm_employee = frappe.get_doc("Employee", employee.reports_to)
-			
-			if not lm_employee.user_id:
-				frappe.log_error(f"Line Manager {employee.reports_to} has no linked user_id")
-				return
-				
-			lm_user = lm_employee.user_id
-			
-			subject = f"Asset Request Submitted by {get_fullname(employee.user_id)}"
-			message = f"""
-                <p>Dear {get_fullname(lm_user)},</p>
-                <p>An asset request has been submitted by <strong>{get_fullname(employee)}</strong>.</p>
-                <p><strong>Requested Item:</strong> {self.requested_item_name}<br>
-                <strong>Reason for Request:</strong> {self.reason_for_request}</p>
-                <p><a href="{get_url()}/app/asset-request/{self.name}">View Request</a></p>
-            """
-			
-			frappe.sendmail(
-                recipients=[lm_user],
-                subject=subject,
-                message=message
-            )
-
-			create_system_notification(message, lm_user, subject)
-			frappe.publish_realtime(
-                event='eval_js',
-                message=f"frappe.show_alert('New Asset Request from {get_fullname(self.employee)}')",
-                user=lm_user
-            )
-			
-		except Exception as e:
-			frappe.log_error(f"Failed to notify LM for Asset Request {self.name}: {str(e)}")
+		subject_template = "Asset Request Submitted by {employee_name}"
+		message_template = """
+			<p>Dear {lm_name},</p>
+			<p>An asset request has been submitted by <strong>{employee_name}</strong>.</p>
+			<p>{additional_info}</p>
+			<p><a href="{doc_url}">View Request</a></p>
+		"""
+		
+		additional_fields = get_asset_request_notification_data(self)
+		
+		notify_line_manager(
+			doc=self,
+			doctype_name="Asset Request",
+			subject_template=subject_template,
+			message_template=message_template,
+			additional_fields=additional_fields
+		)
 
 	def create_asset_movement(self):
 		try:
@@ -92,19 +71,3 @@ class AssetRequest(Document):
 			asset_movement.submit()
 		except Exception as e:
 			frappe.log_error(f"Failed to create Asset Movement for Asset Request {self.name}: {str(e)}")
-
-		
-def create_system_notification(message, user, subject):
-	try:
-		communication = frappe.get_doc(
-			{
-				"doctype": "Notification Log",
-				"email_content": message,
-				"for_user": user,
-				"subject": subject,
-				"type": "Alert",
-			}
-		)
-		communication.insert(ignore_permissions=True)
-	except Exception as e:
-		frappe.log_error(f"Failed to create system notification: {str(e)}")

@@ -8,6 +8,7 @@ from frappe import _, qb
 from frappe.model.document import Document
 from frappe.query_builder import Criterion
 from frappe.query_builder.custom import ConstantColumn
+from frappe.utils import get_fullname, get_url
 from frappe.utils import (
 	add_days,
 	comma_and,
@@ -22,6 +23,8 @@ from frappe.utils import (
 	get_number_format_info,
 	getdate,
 	nowdate,
+	get_fullname,
+	get_url
 )
 
 import erpnext
@@ -938,3 +941,113 @@ def get_exact_month_diff(string_ed_date: DateTimeLikeObject, string_st_date: Dat
 	if ed_date.day >= st_date.day:
 		diff += 1
 	return diff
+
+
+def notify_line_manager(doc, doctype_name, subject_template, message_template, additional_fields=None):
+	"""
+	Generic function to notify line manager for any HR document
+	
+	Args:
+		doc: The document object
+		doctype_name: Name of the doctype (e.g., "Asset Request", "Employee Resignation")
+		subject_template: Subject template with {employee_name} placeholder
+		message_template: Message template with placeholders
+		additional_fields: Dict of additional fields to include in message
+	"""
+	if not doc.employee:
+		return
+		
+	try:
+		employee = frappe.get_doc("Employee", doc.employee)
+		
+		if not employee.reports_to:
+			frappe.log_error(f"{doctype_name} {doc.name} has no Line Manager for employee {doc.employee}")
+			return
+			
+		lm_employee = frappe.get_doc("Employee", employee.reports_to)
+		
+		if not lm_employee.user_id:
+			frappe.log_error(f"Line Manager {employee.reports_to} has no linked user_id")
+			return
+			
+		lm_user = lm_employee.user_id
+		
+		# Prepare additional fields for message
+		additional_info = ""
+		if additional_fields:
+			for field_label, field_value in additional_fields.items():
+				if field_value:
+					additional_info += f"<strong>{field_label}:</strong> {field_value}<br>"
+		
+		subject = subject_template.format(employee_name=get_fullname(employee.user_id))
+		message = message_template.format(
+			lm_name=get_fullname(lm_user),
+			employee_name=get_fullname(employee.user_id),
+			additional_info=additional_info,
+			doc_url=f"{get_url()}/app/{doc.doctype.lower().replace(' ', '-')}/{doc.name}"
+		)
+		
+		frappe.sendmail(
+			recipients=[lm_user],
+			subject=subject,
+			message=message
+		)
+
+		create_system_notification(message, lm_user, subject)
+		frappe.publish_realtime(
+			event='eval_js',
+			message=f"frappe.show_alert('New {doctype_name} from {get_fullname(employee.user_id)}')",
+			user=lm_user
+		)
+		
+	except Exception as e:
+		frappe.log_error(f"Failed to notify LM for {doctype_name} {doc.name}: {str(e)}")
+
+
+def create_system_notification(message, user, subject):
+	"""
+	Create system notification log entry
+	
+	Args:
+		message: Email content
+		user: User to notify
+		subject: Notification subject
+	"""
+	try:
+		communication = frappe.get_doc(
+			{
+				"doctype": "Notification Log",
+				"email_content": message,
+				"for_user": user,
+				"subject": subject,
+				"type": "Alert",
+			}
+		)
+		communication.insert(ignore_permissions=True)
+	except Exception as e:
+		frappe.log_error(f"Failed to create system notification: {str(e)}")
+
+
+def get_asset_request_notification_data(doc):
+	"""Get notification data specific to Asset Request"""
+	return {
+		"Requested Item": doc.requested_item_name,
+		"Reason for Request": doc.reason_for_request
+	}
+
+
+def get_resignation_notification_data(doc):
+	"""Get notification data specific to Employee Resignation"""
+	return {
+		"Resignation Date": doc.resignation_submission_date,
+		"Last Working Day": doc.last_working_date,
+		"Reason for Resignation": doc.reason_for_resignation
+	}
+
+
+def get_leave_resumption_notification_data(doc):
+	"""Get notification data specific to Leave Resumption"""
+	return {
+		"Join Date": doc.join_date,
+		"Comment": doc.comment or 'No comment provided'
+	}
