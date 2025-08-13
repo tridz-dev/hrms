@@ -55,6 +55,7 @@ import {
 	RESIGNATION_FIELDS,
 	ASSET_REQUEST_FIELDS,
     LEAVE_RESUMPTION_FIELDS,
+    EMPLOYEE_CERTIFICATE_FIELDS,
 } from "@/data/config/requestSummaryFields"
 
 const __ = inject("$translate")
@@ -92,6 +93,7 @@ const fieldsMap = {
 	"Employee Resignation": RESIGNATION_FIELDS,
 	"Asset Request": ASSET_REQUEST_FIELDS,
     "Leave Resumption": LEAVE_RESUMPTION_FIELDS,
+    "Employee Certificate": EMPLOYEE_CERTIFICATE_FIELDS,
 }
 
 const isRequestModalOpen = ref(false)

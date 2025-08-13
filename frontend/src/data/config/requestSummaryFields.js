@@ -355,3 +355,36 @@ export const LEAVE_RESUMPTION_FIELDS = [
         fieldtype: "Select",
     },
 ]
+
+export const EMPLOYEE_CERTIFICATE_FIELDS = [
+    {
+        fieldname: "name",
+        label: "ID",
+        fieldtype: "Data",
+    },
+    {
+        fieldname: "employee",
+        label: "Employee",
+        fieldtype: "Link",
+    },
+    {
+        fieldname: "purpose",
+        label: "Purpose",
+        fieldtype: "Link",
+    },
+    {
+        fieldname: "reason",
+        label: "Reason",
+        fieldtype: "Small Text",
+    },
+    {
+        fieldname: "certificate_date",
+        label: "Certificate Date",
+        fieldtype: "Date",
+    },
+    {
+        fieldname: "docstatus",
+        label: "Status",
+        fieldtype: "Select",
+    },
+]

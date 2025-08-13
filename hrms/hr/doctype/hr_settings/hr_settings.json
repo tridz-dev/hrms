@@ -52,7 +52,10 @@
   "allow_employee_checkin_from_mobile_app",
   "allow_geolocation_tracking",
   "unlink_payment_section",
-  "unlink_payment_on_cancellation_of_employee_advance"
+  "unlink_payment_on_cancellation_of_employee_advance",
+  "employee_certificate_section",
+  "purpose_print_format_mapping",
+  "certificate_letterhead"
  ],
  "fields": [
   {
@@ -336,13 +339,30 @@
    "fieldname": "prevent_self_leave_approval",
    "fieldtype": "Check",
    "label": "Prevent self approval for leaves even if user has permissions"
+  },
+  {
+   "fieldname": "employee_certificate_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Certificate "
+  },
+  {
+   "fieldname": "purpose_print_format_mapping",
+   "fieldtype": "Table",
+   "label": "Purpose Print Format Mapping",
+   "options": "HR Purpose Print Format Mapping"
+  },
+  {
+   "fieldname": "certificate_letterhead",
+   "fieldtype": "Link",
+   "label": "Certificate Letterhead",
+   "options": "Letter Head"
   }
  ],
  "icon": "fa fa-cog",
  "idx": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-01-30 12:41:22.594071",
+ "modified": "2025-08-13 13:08:00.562209",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR Settings",
@@ -377,6 +397,7 @@
    "role": "Employee"
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "ASC",
  "states": [],

@@ -225,6 +225,12 @@ const profileLinks = [
         action: "leave_resumption",
     },
 	{
+		icon: "award",
+		title: __("Employee Certificate"),
+		isAction: true,
+		action: "employee_certificate",
+	},
+	{
 		icon: "file-text",
 		title: __("Resignation Application"),
 		isAction: true,
@@ -248,6 +254,8 @@ const handleLinkClick = async (link) => {
 		router.push({ name: 'AssetRequestDashboard' })
   } else if (link.isAction && link.action === 'leave_resumption') {
     router.push({ name: 'LeaveResumptionDashboard' })
+	} else if (link.isAction && link.action === 'employee_certificate') {
+		router.push({ name: 'EmployeeCertificateDashboard' })
 	} else {
 		openInfoModal(link)
 	}

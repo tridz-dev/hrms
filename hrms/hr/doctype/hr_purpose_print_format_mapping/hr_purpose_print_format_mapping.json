@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-13 10:59:29.008944",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "purpose",
+  "print_format"
+ ],
+ "fields": [
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purpose",
+   "options": "Employee Certificate Purpose"
+  },
+  {
+   "fieldname": "print_format",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Print Format",
+   "options": "Print Format"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-08-13 11:08:24.491611",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "HR Purpose Print Format Mapping",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

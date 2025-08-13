@@ -1,13 +1,15 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "LR-.YYYY.-.#####",
  "creation": "2025-08-11 16:33:20.837724",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "employee",
   "join_date",
-  "comment"
+  "comment",
+  "amended_from"
  ],
  "fields": [
   {
@@ -26,16 +28,27 @@
    "fieldname": "comment",
    "fieldtype": "Small Text",
    "label": "Comment"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Leave Resumption",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-11 16:36:35.686325",
+ "modified": "2025-08-13 17:00:57.800586",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Resumption",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

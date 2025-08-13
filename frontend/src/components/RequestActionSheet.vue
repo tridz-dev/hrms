@@ -336,6 +336,10 @@ const openFormView = () => {
         router.push({ name: "LeaveResumptionFormView", params: { id } })
         return
     }
+    if (doctype === "Employee Certificate") {
+        router.push({ name: "EmployeeCertificateFormView", params: { id } })
+        return
+    }
     router.push({
         name: `${doctype.replace(/\s+/g, "")}DetailView`,
         params: { id },

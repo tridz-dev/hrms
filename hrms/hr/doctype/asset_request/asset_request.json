@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "AR-.YYYY.-.#####",
  "creation": "2025-08-01 16:09:32.865575",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -85,10 +86,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-13 11:33:09.062267",
+ "modified": "2025-08-13 17:00:34.573427",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Asset Request",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

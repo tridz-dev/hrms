@@ -105,6 +105,11 @@ const routes = [
     name: "LeaveResumptionDashboard",
     component: () => import("@/views/LeaveResumptionDashboard.vue"),
   },
+  {
+    path: "/employee-certificate-dashboard",
+    name: "EmployeeCertificateDashboard",
+    component: () => import("@/views/EmployeeCertificateDashboard.vue"),
+  },
 	{
 		path: "/asset-request-list",
 		name: "AssetRequestListView",
@@ -114,6 +119,11 @@ const routes = [
     path: "/leave-resumption-list",
     name: "LeaveResumptionListView",
     component: () => import("@/views/LeaveResumptionApplicationList.vue"),
+  },
+  {
+    path: "/employee-certificate-list",
+    name: "EmployeeCertificateListView",
+    component: () => import("@/views/EmployeeCertificateApplicationList.vue"),
   },
 	{
 		path: "/asset-request-form/:id?",
@@ -131,6 +141,18 @@ const routes = [
     path: "/leave-resumption/:id?",
     name: "LeaveResumptionDetailView",
     component: () => import("@/views/LeaveResumptionApplication.vue"),
+    props: true,
+  },
+  {
+    path: "/employee-certificate-form/:id?",
+    name: "EmployeeCertificateFormView",
+    component: () => import("@/views/EmployeeCertificateApplication.vue"),
+    props: true,
+  },
+  {
+    path: "/employee-certificate/:id?",
+    name: "EmployeeCertificateDetailView",
+    component: () => import("@/views/EmployeeCertificateApplication.vue"),
     props: true,
   },
 	{
